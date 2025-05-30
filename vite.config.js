@@ -20,25 +20,20 @@ export default defineConfig(({ mode }) => {
       },
     },
     server: {
-  port: env.VITE_PORT ?? 3000,
-  proxy: {
-    ...(env.VITE_BACKEND_URL && {
-      "/api/": {
-        target: env.VITE_BACKEND_URL,
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api\//, ""),
+      port: env.VITE_PORT ?? 3000,
+      proxy: {
+        "/api/": {
+          target: env.VITE_BACKEND_URL,
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/api\//, ""),
+        },
+        "/static/": {
+          target: env.VITE_STATIC_SERVER_URL,
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/static\//, ""),
+        },
       },
-    }),
-    ...(env.VITE_STATIC_SERVER_URL && {
-      "/static/": {
-        target: env.VITE_STATIC_SERVER_URL,
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/static\//, ""),
-      },
-    }),
-  },
-},
-
+    },
     envDir: process.cwd(),
     build: {
       outDir: process.cwd() + "/build",

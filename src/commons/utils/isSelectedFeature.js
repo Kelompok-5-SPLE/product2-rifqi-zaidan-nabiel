@@ -5,11 +5,11 @@ export default isSelectedFeature
 var selectedFeatures = Array.from(new Set ([
 
 "Menu Page",
-"KidsMenu",
+"PromotionalMenu",
 
 
 "Menu Page",
-"PromotionalMenu",
+"KidsMenu",
 
 
 "Menu Page",
